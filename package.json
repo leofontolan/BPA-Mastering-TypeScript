@@ -1,0 +1,14 @@
+{
+  "name": "vueproject",
+  "version": "1.0.0",
+  "description": "Code Vue Curso",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leofontolan",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^1.0.28"
+  }
+}
