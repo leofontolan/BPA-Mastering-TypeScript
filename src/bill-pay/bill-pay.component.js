@@ -50,15 +50,15 @@ window.billPayComponent = Vue.extend({
     computed: {
 
         status: function () {
-            var bills = this.$root.$children[0].billsPay;
+            let bills = this.$root.$children[0].billsPay;
             if (!bills.length) {
                 return false;
             }
 
 
-            var count = 0;
+            let count = 0;
 
-            for (var i in bills) {
+            for (let i in bills) {
                 if (!bills[i].done) {
                     count++;
                 }

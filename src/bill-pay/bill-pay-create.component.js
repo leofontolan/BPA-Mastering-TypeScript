@@ -76,7 +76,7 @@ window.billPayCreateComponent = Vue.extend({
         },
 
         getBill: function (index) {
-            var bills = this.$root.$children[0].billsPay;
+            let bills = this.$root.$children[0].billsPay;
             this.bill = bills[index];
         }
 

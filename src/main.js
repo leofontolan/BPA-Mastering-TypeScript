@@ -1,8 +1,8 @@
 Vue.config.devtools = true;
 
-var router = new VueRouter();
+let router = new VueRouter();
 
-var mainComponent = Vue.extend({
+let mainComponent = Vue.extend({
 
     components: {
         'bill-component': billComponent
