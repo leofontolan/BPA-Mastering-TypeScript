@@ -1,20 +1,26 @@
 {
-  "name": "vueproject",
-  "version": "1.0.0",
-  "description": "Code Vue Curso",
-  "main": "index.js",
+  "name": "vuejs",
+  "version": "0.0.1",
+  "description": "Estudo VuJs",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel src --out-dir dist --watch"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "leofontolan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leofontolan/VueJs.git"
+  },
+  "keywords": [
+    "Estudo",
+    "VueJs"
+  ],
+  "author": "leofontolan@gmail.com",
   "license": "ISC",
-  "dependencies": {
-    "vue": "^1.0.28",
-    "vue-router": "^0.7.13"
+  "bugs": {
+    "url": "https://github.com/leofontolan/VueJs/issues"
   },
-  "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1"
+  "homepage": "https://github.com/leofontolan/VueJs#readme",
+  "dependencies": {
+    "vue": "^1.0.28"
   }
 }
