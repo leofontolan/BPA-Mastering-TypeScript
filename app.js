@@ -3,11 +3,29 @@ Vue.config.devtools = true
 
 Vue.filter('doneLabel', function (value) {
 
-    if (value == 0) {
-        return "Não Paga"
+    if(value == 0){
+        return "Não Paga";
+    }else{
+        return "Paga";
+    }
 
-    } else {
-        return "Paga"
+});
+
+
+Vue.filter('statusGeneral', function (value) {
+
+    if(value === false ){
+
+        return 'Nenhuma conta cadastrada';
+    }
+
+    if(!value){
+
+        return 'Nenhuma conta a pagar';
+
+    }else{
+
+        return 'Existem ' + value + ' contas a serem pagas';
     }
 });
 
@@ -18,31 +36,19 @@ var app = new Vue({
     data: {
         title: 'Contas a Pagar',
 
-        activatedView: 1,
-
-        menus: [
-
-            {id: 0, name: 'Listar Contas'},
+        menus:[
+            {id: 0, name: 'Contas a Pagar'},
             {id: 1, name: 'Criar Conta'},
         ],
 
-        bills: [
+        activatedView: 1,
 
-            {date_due: '21/08/2017', name: 'Conta de Luz', value: '79,80', done: 1},
-            {date_due: '22/08/2017', name: 'Conta de Água', value: '99,80', done: 0},
-            {date_due: '23/08/2017', name: 'Conta de Telefone', value: '59,80', done: 0},
-            {date_due: '24/08/2017', name: 'Supermercado', value: '639,80', done: 0},
-            {date_due: '25/08/2017', name: 'Cartão de Crédito', value: '1478,80', done: 0},
-            {date_due: '26/08/2017', name: 'Empréstimo', value: '2000,00', done: 0},
-            {date_due: '27/08/2017', name: 'Gasolina', value: '130,60', done: 0},
-        ],
+        bill:{
 
-        bill: {
-
-            date_due: '',
-            name: '',
-            value: '',
-            done: 0,
+            date_due: "",
+            name: "",
+            value: 0,
+            done: false,
         },
 
         formType: 'insert',
@@ -57,46 +63,85 @@ var app = new Vue({
             'Empréstimo',
             'Gasolina',
         ],
+
+        bills: [
+
+            { date_due: '20/07/2017', name: 'Conta de Luz', value: 97.65, done: true},
+            { date_due: '21/07/2017', name: 'Conta de Água', value: 87.85, done: false},
+            { date_due: '22/07/2017', name: 'Conta de Telefone', value: 79.95, done: false},
+            { date_due: '23/07/2017', name: 'Supermercado', value: 458.65, done: false},
+            { date_due: '24/07/2017', name: 'Cartão de Crédito', value: 234.15,done: false},
+            { date_due: '25/07/2017', name: 'Empréstimo', value: 2300.85, done: false},
+            { date_due: '26/07/2017', name: 'Gasolina', value: 350.15, done: false},
+
+        ],
     },
 
     computed: {
 
         status: function () {
 
-            count = 0;
-
-            for (var i in this.bills) {
-
-                if (!this.bills[i].done) {
-
-                    count++;
-                }
+            if(!this.bills.length){
+                return false;
             }
-            return !count ? "Nenhuma conta a pagar" : "Existem " + count + " a serem pagas";
+
+            var count = 0;
+
+            for(var i in this.bills){
+
+                if(!this.bills[i].done){
+                    count ++;
+                }
+            };
+
+            return count;
         }
+
     },
 
-    methods: {
+    methods:{
 
         showView: function (id) {
 
             this.activatedView = id;
-            if (id == 1) {
+            if(id == 1){
                 this.formType = 'insert';
             }
-
         },
-
+        
         submit: function () {
-            this.bills.push(this.bill);
+
+            if(this.formType == 'insert'){
+                this.bills.push(this.bill);
+            }
+
+            this.bill = {
+
+                date_due: "",
+                name: "",
+                value: 0,
+                done: false,
+            },
+
+
             this.activatedView = 0;
         },
 
         loadBill: function (bill) {
 
-            this.bill = bill;
-            this.activatedView = 1;
             this.formType = 'update';
+            this.bill = bill;
+            this.activatedView = 1
+
+        },
+
+        deleteBill: function (bill) {
+
+            if(confirm("Deseja excluir essa conta?")){
+
+                this.bills.$remove(bill);
+            }
         }
     }
+
 });
