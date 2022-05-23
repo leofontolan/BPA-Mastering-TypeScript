@@ -15,3 +15,15 @@ console.log(typeof(inferredString));
 var nameIdObject = { name: "myName", id: 1, print() { } }; //Duck Type
 nameIdObject = { id: 2, name: "anotherName", print() { } }; // Não gera erro, pois o tipo é o mesmo
 // nameIdObject = { id: 3, name: "thirdName" }; //Gera erro, pois sem método print(), o tipo não é o mesmo
+
+
+//Funções com retorno e com parâmetros tipados
+function calculate(a:number, b:number, c:number): number {
+    return (a * b) + c;
+}
+console.log("calculate() = " + calculate(2, 3, 1));
+
+function printString(a: string): void {
+    console.log(a);
+}
+printString("Hello World");
